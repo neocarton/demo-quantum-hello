@@ -7,13 +7,13 @@ def fetchBackend() :
     # IBM Q backend
     IBMQ.load_accounts()
     backend = providers.ibmq.least_busy(IBMQ.backends(simulator = False))
-    print("Using the least busy device: ", backend.name())
+    print("Using the least busy device:", backend.name())
     return backend
 
 def getSimulator() :
     # Aer's qasm_simulator
     backend = Aer.get_backend('qasm_simulator')
-    print("Using: ", backend.name())
+    print("Using:", backend.name())
     return backend
 
 def qexec(circuit, backend = None) :
