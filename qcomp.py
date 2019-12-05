@@ -16,11 +16,11 @@ def getSimulator() :
     print("Using:", backend.name())
     return backend
 
-def qexec(circuit, backend = None) :
+def qexec(circuit, backend = None, shots = 1000) :
     if backend is None :
         backend = defaultBackend
     # Execute the circuit on the qasm backend
-    job = execute(circuit, backend, shots = 1000)
+    job = execute(circuit, backend, shots = shots)
     # Grab results from the job
     result = job.result()
     # Returns counts
