@@ -27,18 +27,14 @@ def qexec(circuit, backend = None, shots = 1000) :
     draw_result(circuit, result)
 
 def print_result(circuit, result) :
-    counts = result.get_counts(circuit)
-    statevec = result.get_statevector()
     print(circuit)
-    print("Counts :", counts)
-    print("State vectors:", statevec)
+    print("Counts :", result.get_counts(circuit))
+    # print("State vectors:", result.get_statevector())
 
 def draw_result(circuit, result) :
-    counts = result.get_counts(circuit)
-    statevec = result.get_statevector()
     circuit.draw(output = "mpl")
-    plot_histogram(counts)
-    plot_bloch_multivector(statevec)
+    plot_histogram(result.get_counts(circuit))
+    # plot_bloch_multivector(result.get_statevector())
 
 # List IBMQ backends
 # provider = IBMQ.get_provider(hub='ibm-q')
@@ -48,7 +44,7 @@ def draw_result(circuit, result) :
 # unitary_simulator
 # statevector_simulator
 # qasm_simulator
-# print(Aer.backends())
+print(Aer.backends())
 
-defaultBackend = Aer.get_backend("statevector_simulator")
+defaultBackend = Aer.get_backend("qasm_simulator")
 print("Default backend:", defaultBackend.name())
